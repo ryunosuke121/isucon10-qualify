@@ -4,3 +4,5 @@ node_modules
 .vscode
 public/images/estate/*.png
 public/images/chair/*.png
+node_modules
+out
