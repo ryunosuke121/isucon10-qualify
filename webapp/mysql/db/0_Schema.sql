@@ -19,7 +19,7 @@ CREATE TABLE isuumo.estate
     features    VARCHAR(64)         NOT NULL,
     popularity  INTEGER             NOT NULL,
     popularity_minus INTEGER GENERATED ALWAYS AS (-popularity) STORED,
-    INDEX idx_popularity_minus_id (popularity_minus, id)
+    INDEX idx_estate_popularity_minus_id (popularity_minus, id)
 );
 
 CREATE TABLE isuumo.chair
@@ -36,5 +36,7 @@ CREATE TABLE isuumo.chair
     features    VARCHAR(64)     NOT NULL,
     kind        VARCHAR(64)     NOT NULL,
     popularity  INTEGER         NOT NULL,
-    stock       INTEGER         NOT NULL
+    stock       INTEGER         NOT NULL,
+    popularity_minus INTEGER GENERATED ALWAYS AS (-popularity) STORED,
+    INDEX idx_chair_popularity_minus_id (popularity_minus, id)
 );
