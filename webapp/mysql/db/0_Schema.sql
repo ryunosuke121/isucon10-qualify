@@ -18,7 +18,8 @@ CREATE TABLE isuumo.estate
     door_width  INTEGER             NOT NULL,
     features    VARCHAR(64)         NOT NULL,
     popularity  INTEGER             NOT NULL,
-    popularity_minus INTEGER GENERATED ALWAYS AS (-popularity) STORED 
+    popularity_minus INTEGER GENERATED ALWAYS AS (-popularity) STORED
+    idx_popularity_minus_id (popularity_minus, id),
 );
 
 CREATE TABLE isuumo.chair
