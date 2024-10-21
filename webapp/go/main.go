@@ -15,7 +15,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"github.com/kaz/pprotein/integration/echov4"
+	"github.com/kaz/pprotein/integration/standalone"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
@@ -270,7 +270,9 @@ func main() {
 	e.GET("/api/estate/search/condition", getEstateSearchCondition)
 	e.GET("/api/recommended_estate/:id", searchRecommendedEstateWithChair)
 
-	echov4.EnableDebugHandler(e)
+	go func() {
+		standalone.Integrate(":19000")
+	}()
 
 	mySQLConnectionData = NewMySQLConnectionEnv()
 
