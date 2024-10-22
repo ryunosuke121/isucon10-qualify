@@ -38,5 +38,6 @@ CREATE TABLE isuumo.chair
     popularity  INTEGER         NOT NULL,
     stock       INTEGER         NOT NULL,
     popularity_minus INTEGER GENERATED ALWAYS AS (-popularity) STORED,
-    INDEX idx_chair_popularity_minus_id (popularity_minus, id)
+    INDEX idx_chair_popularity_minus_id (popularity_minus, id),
+    INDEX idx_chair_price_id (price, id)
 );
