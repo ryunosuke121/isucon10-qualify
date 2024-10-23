@@ -13,7 +13,7 @@ CREATE TABLE isuumo.estate
     address     VARCHAR(128)        NOT NULL,
     latitude    DOUBLE PRECISION    NOT NULL,
     longitude   DOUBLE PRECISION    NOT NULL,
-    point POINT GENERATED ALWAYS AS (POINT(latitude, longitude)) STORED,
+    point POINT GENERATED ALWAYS AS (ST_GeomFromText(CONCAT('POINT(', latitude, ' ', longitude, ')'))) STORED,
     rent        INTEGER             NOT NULL,
     door_height INTEGER             NOT NULL,
     door_width  INTEGER             NOT NULL,
