@@ -374,7 +374,7 @@ func postChair(c echo.Context) error {
 	if err != nil {
 		c.Logger().Errorf("failed to begin tx: %v", err)
 		return c.NoContent(http.StatusInternalServerError)
-	}
+	}888
 	defer tx.Rollback()
 	for _, row := range records {
 		rm := RecordMapper{Record: row}
@@ -879,7 +879,7 @@ func searchEstateNazotte(c echo.Context) error {
 	estatesInPolygon := []Estate{}
 
 	query := fmt.Sprintf(`SELECT * FROM estate WHERE ST_Contains(ST_PolygonFromText(%s), location) ORDER BY popularity_minus ASC, id ASC LIMIT %v`, coordinates.coordinatesToText(), NazotteLimit)
-	err = db.Get(&estatesInPolygon, query)
+	err = db.Select(&estatesInPolygon, query)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			c.Echo().Logger.Infof("select * from estate where ST_Contains(ST_...)", err)
