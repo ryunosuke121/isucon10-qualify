@@ -374,7 +374,7 @@ func postChair(c echo.Context) error {
 	if err != nil {
 		c.Logger().Errorf("failed to begin tx: %v", err)
 		return c.NoContent(http.StatusInternalServerError)
-	}888
+	}
 	defer tx.Rollback()
 	for _, row := range records {
 		rm := RecordMapper{Record: row}
