@@ -13,7 +13,7 @@ CREATE TABLE isuumo.estate
     address     VARCHAR(128)        NOT NULL,
     latitude    DOUBLE PRECISION    NOT NULL,
     longitude   DOUBLE PRECISION    NOT NULL,
-    location POINT GENERATED ALWAYS AS (ST_GeomFromText(CONCAT('POINT(', latitude, ' ', longitude, ')'))) STORED,
+    location POINT GENERATED ALWAYS AS (ST_GeomFromText(CONCAT('POINT(', latitude, ' ', longitude, ')'))) STORED NOT NULL,
     rent        INTEGER             NOT NULL,
     door_height INTEGER             NOT NULL,
     door_width  INTEGER             NOT NULL,
@@ -21,7 +21,8 @@ CREATE TABLE isuumo.estate
     popularity  INTEGER             NOT NULL,
     popularity_minus INTEGER GENERATED ALWAYS AS (-popularity) STORED,
     INDEX idx_estate_popularity_minus_id (popularity_minus, id),
-    INDEX idx_estate_rent_id (rent, id)
+    INDEX idx_estate_rent_id (rent, id),
+    SPATIAL INDEX idx_estate_location (location)
 );
 
 CREATE TABLE isuumo.chair
